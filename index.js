@@ -6,7 +6,7 @@ const grantAccessContainer = document.querySelector(".grant-location-container")
 const searchForm = document.querySelector("[data-searchForm]");
 const loadingScreen = document.querySelector(".loading-container");
 const userInfoContainer = document.querySelector(".user-info-container");
-// const dataNotFound = document.querySelector(".data-not-found");
+const dataNotFound = document.querySelector(".not-found");
 
  
 // Variables needed initially
@@ -27,11 +27,13 @@ function switchTab(clickedTab){
            userInfoContainer.classList.remove("active");
            grantAccessContainer.classList.remove("active");
            searchForm.classList.add("active");
+        //    dataNotFound.classList.add("active");
        }
        else{
            //main pehle search wale tab pe tha,ab your weather tab visible karna h
            searchForm.classList.remove("active");
            userInfoContainer.classList.remove("active");
+           dataNotFound.classList.remove("active");
            // ab mein your tab me aagya hu, toh weather bhi display karna padega,so let's check local storage first
            //for coordinates,if we have saved them  there
            getFromSessionStorage();
@@ -159,10 +161,13 @@ async function fetchSearchWeatherInfo(city) {
         const data = await response.json();
         loadingScreen.classList.remove("active");
         userInfoContainer.classList.add("active");
+        dataNotFound.classList.remove("active");
         renderWeatherInfo(data);
     }
     catch(err) {
-        alert("Error in API fetching");
+           dataNotFound.classList.add("active");
+           userInfoContainer.classList.remove("active");
+        //    alert("Error in API fetching");
     }
 }
 

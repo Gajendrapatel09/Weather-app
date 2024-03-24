@@ -257,3 +257,16 @@ h1 {
         flex-wrap: wrap-reverse;
     }
 } */
+
+.not-found{
+    display: none;
+}
+
+.not-found.active{
+    display: flex;
+    justify-content: center;
+}
+
+figure {
+    text-align: center;
+}
